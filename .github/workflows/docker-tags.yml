@@ -11,8 +11,13 @@ jobs:
         # Strip git ref prefix
         VERSION=$(echo "${{ github.ref }}" | sed -e 's,.*/\(.*\),\1,')
         echo VERSION=$VERSION
-        SHA=$(echo "${{github.sha}}")
+        SHA=$(echo "${{github.sha}}"  | cut -c1-8 )
         echo SHA=$SHA
-          
+        # DEVELOP
+        [ "$VERSION" == "develop" ] && TAGS=repo/image:$SHA,repo/image:dev
+        # MAIN
+        [ "$VERSION" == "main" ] && TAGS=repo/image:$SHA,repo/image:latest
+        # VERSION
+        echo TAGS=$TAGS
 # github.ref = refs/heads/<branch_name> OR refs/tags/<tag_name>
 # github.sha = The commit SHA that triggered the workflow run
