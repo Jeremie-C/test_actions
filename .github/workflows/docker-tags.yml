@@ -7,12 +7,12 @@ jobs:
     steps:
     - name: Get Git Informations
       id: tags
-        run: |
-          # Strip git ref prefix
-          VERSION=$(echo "${{ github.ref }}" | sed -e 's,.*/\(.*\),\1,')
-          echo VERSION=$VERSION
-          SHA=$(echo "${{github.sha}}")
-          echo SHA=$SHA
+      run: |
+        # Strip git ref prefix
+        VERSION=$(echo "${{ github.ref }}" | sed -e 's,.*/\(.*\),\1,')
+        echo VERSION=$VERSION
+        SHA=$(echo "${{github.sha}}")
+        echo SHA=$SHA
           
 # github.ref = refs/heads/<branch_name> OR refs/tags/<tag_name>
 # github.sha = The commit SHA that triggered the workflow run
